@@ -1,0 +1,90 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/banzai-demio-openapi.yml
+docs:
+  - https://publicdemioapi.docs.apiary.io
+  - https://help.demio.com/en/articles/5151423-demio-security-privacy
+  - https://help.demio.com/en/articles/2449217-gdpr-settings
+provider: Banzai
+providerId: banzai
+api: Public Demio API
+standards:
+  - id: openapi
+    conforms: false
+    evidence: >-
+      Demio publishes API Blueprint 1A (Apiary), not OpenAPI. The OpenAPI 3.0.3
+      document in openapi/ is an API Evangelist conversion of that blueprint, not a
+      provider artifact.
+  - id: api-blueprint
+    conforms: true
+    evidence: >-
+      FORMAT 1A blueprint published by the Demio-owned Apiary project
+      "publicdemioapi"; saved verbatim at
+      openapi/banzai-demio-api-blueprint-original.apib
+  - id: rest
+    conforms: true
+    evidence: Resource-oriented JSON over HTTPS with GET/PUT verbs.
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme; authorization is an API key/secret pair.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery document on any Demio host.
+  - id: saml2
+    conforms: true
+    scope: web-application-only
+    evidence: >-
+      SAML 2.0 single sign-on for the Demio application on select plans
+      (https://help.demio.com/en/articles/8912841-saml-single-sign-on-sso). Not an API
+      authorization mechanism.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use a bespoke {"messages": [...]} envelope with application/json, not
+      application/problem+json.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: >-
+      /.well-known/security.txt returns 404 on www.banzai.io and www.demio.com. The
+      200 on help.demio.com is Intercom's file (Canonical
+      https://app.intercom.com/.well-known/security.txt), not Banzai's.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation header documented.
+  - id: rfc6749-idempotency
+    conforms: false
+    evidence: No idempotency key header documented on the single write operation.
+  - id: json-api
+    conforms: false
+  - id: asyncapi
+    conforms: false
+    evidence: No event or streaming specification published; events reach customers via Zapier only.
+  - id: mcp
+    conforms: false
+    evidence: No Model Context Protocol server published by Banzai or Demio.
+  - id: a2a
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+      www.banzai.io and www.demio.com; the 200s on my.demio.com are an SPA catch-all
+      returning HTML for every path (verified against a control path).
+  - id: gdpr
+    conforms: true
+    scope: platform
+    evidence: >-
+      Account-wide GDPR setting adding a GDPR consent checkbox to registration and
+      embed forms, documented GDPR deletion on request, published subprocessor list
+      (https://www.banzai.io/legal/subprocessors).
+  - id: soc2
+    conforms: unknown
+    evidence: >-
+      No SOC 2 claim, trust center or audit report was found on any Banzai or Demio
+      host. trust.banzai.io and trust.demio.com do not resolve.
+  - id: iso27001
+    conforms: unknown
+    evidence: No ISO 27001 claim found.
+  - id: tls-modern
+    conforms: true
+    evidence: >-
+      TLSv1.3 with HSTS (max-age 31536000, includeSubDomains, preload) on
+      my.demio.com; see security/banzai-domain-security.yml.

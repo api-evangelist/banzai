@@ -1,0 +1,61 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Banzai
+providerId: banzai
+api: Public Demio API
+created: '2026-08-06'
+modified: '2026-08-06'
+generated: '2026-08-06'
+method: searched
+tags:
+  - Rate Limiting
+  - Webinars
+  - Marketing
+description: >-
+  Demio publishes both a burst rate limit and a per-account daily API-call quota. The
+  daily quota is shared across direct API calls and third-party tools such as Zapier,
+  and resets at 00:00 UTC. Usage against the daily quota is visible in the account's
+  Settings > API tab. Quota increases above 5,000 calls/day are requested through a
+  form and approved case by case.
+sources:
+  - https://help.demio.com/en/articles/4544025-api-limitations
+  - https://publicdemioapi.docs.apiary.io
+limits:
+  - name: Burst requests
+    scope: user
+    metric: requests_per_minute
+    limit: 180
+    timeFrame: minute
+    note: >-
+      Applies to all users. Requests above 180 within any 60-second period return an
+      error. Demio describes the limit as spam/abuse protection.
+  - name: Daily API calls (free trial account)
+    scope: account
+    metric: requests_per_day
+    limit: 100
+    timeFrame: day
+    resets: '00:00 UTC'
+    note: Shared across the Demio API and third-party tools such as Zapier.
+  - name: Daily API calls (paying customer)
+    scope: account
+    metric: requests_per_day
+    limit: 5000
+    timeFrame: day
+    resets: '00:00 UTC'
+    note: >-
+      Shared across the Demio API and third-party tools such as Zapier. Increases are
+      requested at https://airtable.com/shryLbCsd9UHy1RZd and approved case by case.
+increase_request: https://airtable.com/shryLbCsd9UHy1RZd
+usage_dashboard: https://my.demio.com/manage/api-details
+enforcement:
+  suspension: >-
+    Demio reserves the right to suspend API access where usage is not compliant with
+    its spam policy.
+  spam_policy: https://www.demio.com/spam-policy
+gaps:
+  - >-
+    Demio does not document a throttled HTTP status code (429 or otherwise) or any
+    rate-limit response headers (X-RateLimit-*, RateLimit-*, Retry-After). Clients
+    cannot read remaining quota from a response; the only published surface is the
+    Settings > API usage tab.

@@ -1,0 +1,45 @@
+generated: '2026-08-06'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.banzai.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  5 22:59:36 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: www.demio.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  6 17:44:37 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: my.demio.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 22 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  hsts_preload: true
+  note: >-
+    API host (baseURL https://my.demio.com/api/v1). Probed manually on 2026-08-06 —
+    GET /api/v1/ping returned HTTP 401 with the HSTS header above.
+- host: publicdemioapi.docs.apiary.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 18 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: banzai.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: demio.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

@@ -42,5 +42,19 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Banzai is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/banzai_stock/
+Banzai International, Inc. (NASDAQ: BNZI) is a marketing technology company building AI-enabled
+engagement, video and event marketing software — Demio, Boost, Curate, Vidello, OpenReel,
+CreateStudio, PhotoVibrance, Twinkle and Act-On.
+
+Its one public developer surface is the **Public Demio API** — a REST API at
+`https://my.demio.com/api/v1` covering webinar Events, Event Sessions, attendee registration
+(returning a unique join link) and session attendance reporting, authorized with an account
+API Key and API Secret. Demio documents it as an API Blueprint on Apiary, publishes rate
+limits and daily call quotas, and runs a public status page.
+
+- Company: https://www.banzai.io
+- Demio: https://www.demio.com
+- API documentation: https://publicdemioapi.docs.apiary.io
+- Help center: https://help.demio.com/en/
+- Status: https://status.demio.com
+- Investor relations: https://ir.banzai.io/

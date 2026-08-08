@@ -1,0 +1,78 @@
+generated: '2026-08-06'
+method: searched
+source: >-
+  npm registry search (banzai, demio, openreel), PyPI, and the Demio developer surface
+provider: Banzai
+providerId: banzai
+description: >-
+  Banzai publishes no client SDK for the Public Demio API in any language. The
+  first-party packages below are internal front-end tooling that Demio engineers ship
+  to npm under Banzai accounts — a shared UI component library and a lint-rules
+  package. They are catalogued for completeness and are explicitly NOT API clients, so
+  no `SDKs` pointer is wired in apis.yml.
+sdk_count: 0
+packages:
+  - language: javascript
+    registry: npm
+    name: demio-ui
+    version: 5.5.14
+    url: https://www.npmjs.com/package/demio-ui
+    install: npm install demio-ui
+    repository: https://gitlab.com/banzai_io/demio/demio-ui
+    official: true
+    api_client: false
+    kind: ui-component-library
+    last_published: '2026-07-31'
+    note: Demio's internal UI library. Publisher volodymyr.lysytsia@banzai.io.
+  - language: javascript
+    registry: npm
+    name: demio-ui-kit
+    version: 5.0.3
+    url: https://www.npmjs.com/package/demio-ui-kit
+    install: npm install demio-ui-kit
+    official: true
+    api_client: false
+    kind: ui-component-library
+    last_published: '2026-05-08'
+    note: >-
+      "Demio resources and components that are shared across Demio applications."
+      Maintainers on banzai.io and demio.com addresses.
+  - language: javascript
+    registry: npm
+    name: demio-code-rules
+    version: 0.3.2
+    url: https://www.npmjs.com/package/demio-code-rules
+    install: npm install demio-code-rules
+    repository: https://github.com/meetdemio/demio-code-rules
+    official: true
+    api_client: false
+    kind: lint-config
+    last_published: '2022-04-28'
+third_party:
+  - language: javascript
+    registry: npm
+    name: '@pipedream/demio'
+    url: https://www.npmjs.com/package/@pipedream/demio
+    official: false
+    note: Pipedream connector components, not published by Banzai.
+not_this_company:
+  - name: '@banzai-inc/*'
+    registry: npm
+    publisher: jared@banzai.org
+    note: >-
+      Published by Banzai (banzai.org / teachbanzai.com), the financial-literacy
+      education company — a different Banzai. Excluded.
+  - name: banzai
+    registry: npm
+    note: A document-processing pipeline library by an unrelated author.
+  - name: banzai
+    registry: pypi
+    url: https://pypi.org/project/banzai/
+    note: >-
+      BANZAI, the Las Cumbres Observatory astronomical image-reduction pipeline.
+      Unrelated.
+gaps:
+  - >-
+    No official client library on npm, PyPI, Maven Central, NuGet, pkg.go.dev,
+    RubyGems, Packagist or crates.io for the Public Demio API. Integrators either call
+    the REST API directly or use the Demio Zapier app.

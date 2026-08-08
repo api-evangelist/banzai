@@ -1,0 +1,118 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/banzai-demio-openapi.yml
+provider: Banzai
+providerId: banzai
+api: Public Demio API
+description: >-
+  Entity-relationship graph derived from the schemas and id-reference fields in the
+  Public Demio API contract. Demio publishes no object reference, so identifier
+  formats below are read from the documented examples.
+entities:
+  - name: Event
+    schema: Event
+    identifier: id
+    id_type: integer
+    description: >-
+      A webinar or virtual event. Carries the registration page URL, the series
+      registration behaviour, an optional automated (evergreen) video block, and the
+      full list of Sessions.
+    read_operations: [listEvents, getEvent]
+  - name: EventDate
+    aliases: [Session]
+    schema: EventDate
+    identifier: date_id
+    id_type: integer
+    description: >-
+      One scheduled occurrence of an Event. Demio's UI and Help Center call this a
+      Session; the API calls it a Date. Status values observed in the contract:
+      scheduled, running, finished. Cancelled Events are excluded from GET /events.
+    read_operations: [getEvent, getEventSession]
+  - name: Registration
+    schema: Registration
+    identifier: hash
+    id_type: string
+    id_example_length: 16
+    description: >-
+      The result of registering a person for an Event — a unique attendee hash and the
+      join link built from it (https://event.demio.com/join/{hash}).
+    write_operations: [registerForEvent]
+  - name: Participant
+    schema: Participant
+    identifier: email
+    id_type: string
+    description: >-
+      A registrant read back through the reporting surface, with attendance flag,
+      participation status and the values of the Event's custom registration fields.
+      There is no participant id in the contract — email is the key.
+    read_operations: [listSessionParticipants]
+  - name: ParticipantCustomField
+    schema: ParticipantCustomField
+    identifier: id
+    id_type: string
+    id_examples: [last_name, website]
+    description: >-
+      A registration form field value carried on a Participant. The id is the field's
+      Unique Identifier from the Event's Registration block, and is also the key used
+      to set the value on registration.
+  - name: Automated
+    schema: Automated
+    description: >-
+      Evergreen/automated playback block on an Event — video duration and readiness.
+      Null on live Events.
+relationships:
+  - from: Event
+    to: EventDate
+    type: has_many
+    via: dates
+  - from: Event
+    to: EventDate
+    type: has_one
+    via: next_date_id
+    note: Next running or scheduled Session.
+  - from: Event
+    to: EventDate
+    type: has_one
+    via: date_id
+    note: >-
+      On the list projection (EventSummary) only the next upcoming Session is
+      inlined — Events are grouped by Event ID and represented by one Date.
+  - from: EventDate
+    to: Event
+    type: belongs_to
+    via: path parameter id on /event/{id}/date/{date_id}
+  - from: Event
+    to: Automated
+    type: has_one
+    via: automated
+  - from: Registration
+    to: Event
+    type: belongs_to
+    via: id or ref_url
+  - from: Registration
+    to: EventDate
+    type: belongs_to
+    via: date_id
+    note: Optional — when omitted Demio resolves the nearest active Date.
+  - from: EventDate
+    to: Participant
+    type: has_many
+    via: /report/{date_id}/participants
+  - from: Participant
+    to: ParticipantCustomField
+    type: has_many
+    via: custom_fields
+projections:
+  - name: EventSummary
+    of: Event
+    note: >-
+      The list projection is not a subset of the detail projection — it inlines the
+      next Session's date_id/status/timestamp/zone, which the detail projection nests
+      inside dates[] instead. A client cannot treat the two shapes interchangeably.
+gaps:
+  - >-
+    No public object reference or id-prefix scheme; identifiers are opaque integers
+    (Event, Date) or opaque strings (join hash, custom field id).
+  - >-
+    No create/update/delete operations for Events or Sessions — the write surface is
+    registration only, so the model is read-mostly.

@@ -1,0 +1,62 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Public Demio API
+  version: 1.0.0
+extends: openapi/banzai-demio-openapi.yml
+x-generated: '2026-08-06'
+x-method: generated
+x-source: >-
+  Enhancements applied by API Evangelist on top of the OpenAPI converted from Demio's
+  published API Blueprint. Captured as an Overlay so the converted document stays a
+  faithful representation of what Demio publishes.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-profile: https://apievangelist.com/providers/banzai
+      x-provider: Banzai International, Inc.
+      x-provider-ticker: 'NASDAQ: BNZI'
+      x-contract-origin: api-blueprint
+  - target: $.info
+    update:
+      x-rate-limits:
+        burst: 180 requests per minute
+        daily_trial: 100 requests per day
+        daily_customer: 5000 requests per day
+        resets: '00:00 UTC'
+        shared_with: [zapier]
+        source: https://help.demio.com/en/articles/4544025-api-limitations
+        artifact: rate-limits/banzai-rate-limits.yml
+  - target: $.info
+    update:
+      x-error-envelope:
+        shape: '{"messages": ["..."]}'
+        rfc9457: false
+        artifact: errors/banzai-problem-types.yml
+      x-idempotency:
+        supported: false
+        note: >-
+          No idempotency key on the single write operation. Retries can duplicate a
+          registration.
+  - target: $.paths['/event/register'].put
+    update:
+      x-agentic-access:
+        action-class: acting
+        consequence: write
+        side-effect: >-
+          Creates a registrant and can trigger Demio confirmation and reminder email to
+          the submitted address.
+        human-in-the-loop: recommended
+        audit: required
+  - target: $.paths['/report/{date_id}/participants'].get
+    update:
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+        data-classification: personal-data
+        note: Returns registrant names, email addresses and custom form-field values.
+  - target: $.paths['/ping/query'].get
+    update:
+      x-deprecated-by-convention: true
+      x-security-note: >-
+        Places the API secret in the URL, where it is captured by proxy logs, server
+        logs and browser history. Prefer the header form on /ping.

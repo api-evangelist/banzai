@@ -1,0 +1,18 @@
+generated: '2026-08-06'
+method: generated
+provider: Banzai
+providerId: banzai
+source: openapi/banzai-demio-openapi.yml
+note: >-
+  Banzai publishes no AGENTS.md or provider-authored skill files. These are API
+  Evangelist skills, grounded operation by operation in the operationIds present in
+  openapi/banzai-demio-openapi.yml.
+skills:
+  - file: banzai-register-attendee-and-return-join-link.md
+    name: Register an attendee for a Demio Event and return their join link
+    api: openapi/banzai-demio-openapi.yml
+    operations: [pingViaHeaders, listEvents, getEvent, registerForEvent]
+  - file: banzai-pull-session-attendance-report.md
+    name: Pull the attendance report for a Demio Session
+    api: openapi/banzai-demio-openapi.yml
+    operations: [pingViaHeaders, listEvents, getEvent, getEventSession, listSessionParticipants]

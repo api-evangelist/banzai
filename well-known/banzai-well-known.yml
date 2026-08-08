@@ -1,0 +1,69 @@
+generated: '2026-08-06'
+method: probed
+source: live HTTP probes, 2026-08-06
+provider: Banzai
+providerId: banzai
+note: >-
+  No first-party /.well-known/ document is served on any Banzai or Demio host. Two
+  false positives were ruled out and are recorded so a later run does not re-credit
+  them: (1) my.demio.com answers HTTP 200 with the same 3,337-byte login HTML for
+  every path, including a control path that cannot exist, so none of its 200s are
+  documents; (2) help.demio.com serves a real RFC 9116 security.txt, but it is
+  Intercom's — the help centre runs on Intercom and the file's Canonical field is
+  https://app.intercom.com/.well-known/security.txt. It is saved verbatim below,
+  marked first_party false, and no SecurityTxt pointer is wired for Banzai.
+control_probe:
+  path: /zzz-control-does-not-exist-123
+  results:
+    - {host: www.banzai.io, status: 404}
+    - {host: www.demio.com, status: 404}
+    - {host: help.demio.com, status: 404}
+    - {host: my.demio.com, status: 200, verdict: soft-404 catch-all, body: login HTML}
+probes:
+  - host: www.banzai.io
+    results:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/oauth-protected-resource, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}
+      - {path: /.well-known/agent.json, status: 404, file: null}
+  - host: www.demio.com
+    results:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/oauth-protected-resource, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}
+      - {path: /.well-known/agent.json, status: 404, file: null}
+  - host: my.demio.com
+    note: >-
+      API host. Every path returns 200 with identical login HTML — soft-404 catch-all,
+      confirmed against the control path. No document exists at any of these paths.
+    results:
+      - {path: /.well-known/security.txt, status: 200, file: null, verdict: soft-404}
+      - {path: /.well-known/openid-configuration, status: 200, file: null, verdict: soft-404}
+      - {path: /.well-known/oauth-authorization-server, status: 200, file: null, verdict: soft-404}
+      - {path: /.well-known/oauth-protected-resource, status: 200, file: null, verdict: soft-404}
+      - {path: /.well-known/api-catalog, status: 200, file: null, verdict: soft-404}
+      - {path: /.well-known/ai-plugin.json, status: 200, file: null, verdict: soft-404}
+      - {path: /.well-known/agent-card.json, status: 200, file: null, verdict: soft-404}
+      - {path: /.well-known/agent.json, status: 200, file: null, verdict: soft-404}
+  - host: help.demio.com
+    results:
+      - path: /.well-known/security.txt
+        status: 200
+        file: banzai-intercom-security.txt
+        first_party: false
+        operator: Intercom
+        canonical: https://app.intercom.com/.well-known/security.txt
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/oauth-protected-resource, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+documents: []

@@ -1,0 +1,129 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/banzai-demio-openapi.yml
+docs:
+  - https://publicdemioapi.docs.apiary.io
+  - https://help.demio.com/en/articles/4544025-api-limitations
+provider: Banzai
+providerId: banzai
+api: Public Demio API
+description: >-
+  Cross-cutting request/response semantics for the Public Demio API, searched from
+  Demio's published API Blueprint and Help Center and derived from the OpenAPI in
+  openapi/banzai-demio-openapi.yml.
+
+authentication:
+  style: api-key-pair
+  schemes:
+    - transport: header
+      parameters: [Api-Key, Api-Secret]
+      preferred: true
+    - transport: query
+      parameters: [api_key, api_secret]
+      note: >-
+        Documented alternative. Places the secret in the URL, so it leaks into proxy
+        and server logs and browser history — prefer the header form.
+  verification_endpoint: GET /ping
+  artifact: authentication/banzai-authentication.yml
+
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://my.demio.com/api/v1
+  media_type_versioning: false
+  date_versioning: false
+  note: >-
+    Version is carried in the base path only. Demio publishes no version policy, no
+    version header, and no dated release train.
+
+content:
+  request_media_type: application/json
+  response_media_type: application/json
+  charset: utf-8
+
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency key is documented or present in the contract. PUT /event/register
+    is the only write operation; it uses PUT, which is nominally idempotent by HTTP
+    method, but Demio does not document replay behaviour, does not accept a client
+    supplied key, and does not state whether repeating a registration for the same
+    email returns the original join link or creates a duplicate registrant. Clients
+    that retry a registration must dedupe on their own side.
+
+pagination:
+  supported: false
+  note: >-
+    Neither GET /events nor GET /report/{date_id}/participants documents limit/offset,
+    page or cursor parameters, and neither response carries a next-page field or a
+    total count. Collections are returned whole. There is no published ceiling on the
+    number of Events or participants a single response may contain.
+
+filtering:
+  - operation: listEvents
+    parameter: type
+    values: [upcoming, past, automated]
+  - operation: getEvent
+    parameter: active
+    values: ['true', 'false']
+    note: Restricts the returned dates to active dates in a series.
+  - operation: listSessionParticipants
+    parameter: status
+    values: [attended, did not attend, completed, left early, banned]
+
+field_expansion:
+  supported: false
+  note: >-
+    No expand/fields/include parameter. GET /event/{id} always embeds the full dates
+    array; there is no sparse-fieldset control.
+
+custom_fields:
+  supported: true
+  note: >-
+    Registration accepts arbitrary additional properties keyed by the Unique
+    Identifier of each custom form field configured in the Event's Registration block
+    (documented as "UID": "Value"). Participant reports return the same fields as a
+    custom_fields array of {id, name, value} objects.
+
+metadata:
+  supported: false
+
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation-id header is documented on requests or responses, so
+    there is no published identifier to quote to support when debugging a call.
+
+error_envelope:
+  shape: '{"messages": ["<human readable message>"]}'
+  ping_shape: '{"pong": false, "messages": ["<human readable message>"]}'
+  machine_readable_code: false
+  rfc9457: false
+  note: >-
+    Errors are a JSON object carrying a `messages` array of human-readable strings.
+    There is no stable error code, no error type URI, and no field-level pointer, so
+    clients must string-match to branch on a specific failure. Validation failures
+    return every failed rule in a single array.
+  artifact: errors/banzai-problem-types.yml
+
+rate_limiting:
+  burst: 180 requests per minute
+  daily_quota: 100/day on free trial, 5000/day for paying customers, reset 00:00 UTC
+  signalling:
+    status_code: undocumented
+    headers: none
+  note: >-
+    Rate limits are published in prose but not signalled in the protocol — no 429 is
+    documented, and no RateLimit-*/Retry-After headers are described. A client cannot
+    discover remaining quota without opening the Demio UI.
+  artifact: rate-limits/banzai-rate-limits.yml
+
+events:
+  first_party_webhooks: false
+  note: >-
+    Demio publishes no first-party webhook or streaming surface. Registration, join,
+    no-show and event-update notifications are only available through the Demio Zapier
+    app. See asyncapi/banzai-demio-events.yml.
+
+lifecycle_artifact: lifecycle/banzai-lifecycle.yml

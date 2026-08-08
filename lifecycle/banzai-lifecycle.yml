@@ -1,0 +1,51 @@
+generated: '2026-08-06'
+method: searched
+source: https://publicdemioapi.docs.apiary.io
+provider: Banzai
+providerId: banzai
+api: Public Demio API
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://my.demio.com/api/v1
+  policy_url: null
+  note: >-
+    v1 is the only version ever published. Demio documents no versioning policy, no
+    version-negotiation header and no support window for older versions.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation header support, and no
+    published notice period. Nothing in the contract is marked deprecated.
+changelog:
+  url: null
+  note: >-
+    No API changelog or release-notes surface was found. The published API Blueprint
+    at Apiary reports lastUpdated 2022-04-19, so the documented contract has been
+    static for roughly four years. Demio ships product changes through the Help Center
+    and marketing site, neither of which is dated release notes for the API.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime commitment. Demio publishes recovery objectives for the
+    platform (RTO 1 hour, RPO 24 hours, database backup every 24 hours) in its
+    Security & Privacy article.
+  recovery_objectives:
+    rto: 1 hour
+    rpo: 24 hours
+    source: https://help.demio.com/en/articles/5151423-demio-security-privacy
+status_page: https://status.demio.com
+status_page_platform: Atlassian Statuspage
+deprecated_operations: []
+evidence:
+  - url: https://status.demio.com
+    status: 200
+  - url: https://jsapi.apiary.io/apis/publicdemioapi.apib
+    status: 200
+  - url: https://www.demio.com/changelog
+    status: 404
+  - url: https://www.demio.com/product-updates
+    status: 404

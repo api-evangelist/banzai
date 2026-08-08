@@ -1,0 +1,60 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/banzai-demio-openapi.yml
+docs: https://publicdemioapi.docs.apiary.io
+docs_secondary:
+- https://help.demio.com/en/articles/4544025-api-limitations
+key_management:
+  console: https://my.demio.com/manage/api-details
+  note: >-
+    API Key and API Secret are issued per Demio account from Settings > API. The same
+    tab reports daily API-call usage against the account quota. Credentials may be
+    sent as Api-Key/Api-Secret headers or as api_key/api_secret query parameters; the
+    header form is the documented default and the only form that keeps the secret out
+    of URLs and logs.
+  sandbox: >-
+    A sandbox key/secret pair exists — GET /ping returns a `sandbox` boolean that is
+    true when sandbox credentials were used. Demio does not publish a self-serve
+    procedure for obtaining sandbox credentials.
+account_security:
+  two_factor: https://help.demio.com/en/articles/4794494-two-factor-authentication-2fa
+  saml_sso: https://help.demio.com/en/articles/8912841-saml-single-sign-on-sso
+  saml_note: >-
+    SAML 2.0 single sign-on covers the Demio web application (select plans, configured
+    by the Demio team). It is not an API authorization mechanism — the API remains
+    key/secret only, with no OAuth 2.0 or OpenID Connect surface.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: ApiKeyHeader
+  type: apiKey
+  in: header
+  parameter: Api-Key
+  description: Account API Key, from Demio Settings > API.
+  sources:
+  - openapi/banzai-demio-openapi.yml
+- name: ApiSecretHeader
+  type: apiKey
+  in: header
+  parameter: Api-Secret
+  description: Account API Secret, from Demio Settings > API.
+  sources:
+  - openapi/banzai-demio-openapi.yml
+- name: ApiKeyQuery
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: Account API Key supplied on the query string.
+  sources:
+  - openapi/banzai-demio-openapi.yml
+- name: ApiSecretQuery
+  type: apiKey
+  in: query
+  parameter: api_secret
+  description: Account API Secret supplied on the query string.
+  sources:
+  - openapi/banzai-demio-openapi.yml
