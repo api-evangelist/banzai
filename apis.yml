@@ -35,26 +35,16 @@ tags:
 - SaaS
 - API
 apis:
-- name: Public Demio API
-  description: >-
-    Public REST API for Demio, Banzai's webinar and virtual event platform. Covers
-    listing and reading Events, reading a specific Event Session (Date), registering
-    a person for an Event and returning their unique join link, and pulling the
-    participant/attendance report for a Session. Authorized with an account API Key
-    and API Secret sent either as Api-Key/Api-Secret headers or as api_key/api_secret
-    query parameters; sandbox key/secret pairs are distinguished in the ping
-    response.
+- aid: banzai:banzai-events-api
+  name: Banzai Events API
+  description: Events, Event Sessions (Dates) and registration.
   humanURL: https://publicdemioapi.docs.apiary.io
   baseURL: https://my.demio.com/api/v1
   tags:
-  - Webinars
   - Events
-  - Registration
-  - Reporting
-  - Marketing
   properties:
   - type: OpenAPI
-    url: openapi/banzai-demio-openapi.yml
+    url: openapi/banzai-events-api-openapi.yml
   - type: APIBlueprint
     url: openapi/banzai-demio-api-blueprint-original.apib
   - type: Documentation
@@ -71,8 +61,62 @@ apis:
     url: conventions/banzai-conventions.yml
   - type: DataModel
     url: data-model/banzai-data-model.yml
-  - type: Overlay
-    url: overlays/banzai-demio-overlay.yaml
+  - type: LLMsTxt
+    url: llms/banzai-demio-llms.txt
+- aid: banzai:banzai-intro-api
+  name: Banzai Intro API
+  description: Authorization checks.
+  humanURL: https://publicdemioapi.docs.apiary.io
+  baseURL: https://my.demio.com/api/v1
+  tags:
+  - Intro
+  properties:
+  - type: OpenAPI
+    url: openapi/banzai-intro-api-openapi.yml
+  - type: APIBlueprint
+    url: openapi/banzai-demio-api-blueprint-original.apib
+  - type: Documentation
+    url: https://publicdemioapi.docs.apiary.io
+  - type: APIReference
+    url: https://publicdemioapi.docs.apiary.io
+  - type: Authentication
+    url: authentication/banzai-authentication.yml
+  - type: RateLimits
+    url: rate-limits/banzai-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/banzai-problem-types.yml
+  - type: Conventions
+    url: conventions/banzai-conventions.yml
+  - type: DataModel
+    url: data-model/banzai-data-model.yml
+  - type: LLMsTxt
+    url: llms/banzai-demio-llms.txt
+- aid: banzai:banzai-reports-api
+  name: Banzai Reports API
+  description: Participation and attendance reporting.
+  humanURL: https://publicdemioapi.docs.apiary.io
+  baseURL: https://my.demio.com/api/v1
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/banzai-reports-api-openapi.yml
+  - type: APIBlueprint
+    url: openapi/banzai-demio-api-blueprint-original.apib
+  - type: Documentation
+    url: https://publicdemioapi.docs.apiary.io
+  - type: APIReference
+    url: https://publicdemioapi.docs.apiary.io
+  - type: Authentication
+    url: authentication/banzai-authentication.yml
+  - type: RateLimits
+    url: rate-limits/banzai-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/banzai-problem-types.yml
+  - type: Conventions
+    url: conventions/banzai-conventions.yml
+  - type: DataModel
+    url: data-model/banzai-data-model.yml
   - type: LLMsTxt
     url: llms/banzai-demio-llms.txt
 maintainers:
@@ -120,7 +164,7 @@ common:
 - type: Compliance
   url: https://help.demio.com/en/articles/5151423-demio-security-privacy
 - type: OpenAPI
-  url: openapi/banzai-demio-openapi.yml
+  url: openapi/_original/banzai-demio-openapi.yml
 - type: Authentication
   url: authentication/banzai-authentication.yml
 - type: Conventions
