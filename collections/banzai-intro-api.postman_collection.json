@@ -1,0 +1,441 @@
+{
+  "item": [
+    {
+      "id": "416d1f1b-51cf-44aa-8944-243ebf3a6e3e",
+      "name": "Intro",
+      "description": {
+        "content": "Authorization checks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99a03e70-387a-474b-9641-42c9f9a9c6b8",
+          "name": "Ping via headers",
+          "request": {
+            "name": "Ping via headers",
+            "description": {
+              "content": "Verifies authorization using the `Api-Key` and `Api-Secret` request headers. Returns whether the credentials resolve and whether they are sandbox credentials.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Api-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d4e807d-9213-4e16-b086-30f961cbaa51",
+              "name": "Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pong\": true,\n  \"sandbox\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90b5bd91-13f0-4cd6-b3e2-b66e1f436b22",
+              "name": "Authorization failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pong\": false,\n  \"messages\": [\n    \"Authorization failed\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85516b99-bfda-4453-b790-060fc68997d1",
+              "name": "Account is not active",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pong\": false,\n  \"messages\": [\n    \"Account is not active\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e524faa7-8120-498e-8bf9-9a0bab2a2be1",
+          "name": "Ping via query string",
+          "request": {
+            "name": "Ping via query string",
+            "description": {
+              "content": "Verifies authorization using the `api_key` and `api_secret` query string parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ping",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Api Key"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_secret",
+                  "value": "<string>",
+                  "description": "(Required) Api Secret"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f5900be1-6d57-427c-86d4-fb492ba8793a",
+              "name": "Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ping",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pong\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "776435eb-114a-4fe7-bb0f-d752351f5ba4",
+              "name": "Authorization failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ping",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pong\": true,\n  \"messages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08f8bf19-54a6-42cf-90f2-c04096d4b6ac",
+              "name": "Account is not active",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ping",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pong\": false,\n  \"messages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.demio.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2132bd84-123d-4b77-a0cb-2d480f1a4308",
+    "name": "Public Demio Intro API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Demio, the webinar and virtual-event platform operated by Banzai International. The API exposes the Event, Event Session (Date), registration and participant-reporting surface: list and read Events, read a specific Event Session, register a person for an Event and receive their unique join link, and pull the participant/attendance report for a Session. Every request is authorized with an account API Key and API Secret, supplied either as `Api-Key` / `Api-Secret` request headers or as `api_key` / `api_secret` query string parameters. Keys are managed in the Demio Settings > API area.\n\nProvenance: this document is a faithful format conversion of the API Blueprint that Demio publishes at https://publicdemioapi.docs.apiary.io (blueprint source https://jsapi.apiary.io/apis/publicdemioapi.apib, Apiary owner \"Demio\"). No operation, parameter, response or field has been added that is not documented in that blueprint. Descriptions, rate limits and error semantics are drawn from the Demio Help Center. Live behaviour of `GET /ping` was verified on 2026-08-06 (HTTP 401 `{\"pong\":false,\"messages\":[\"Authorization failed\"]}` without credentials).\n\nContact Support:\n Name: Demio Support\n Email: support@demio.com",
+      "type": "text/plain"
+    }
+  }
+}

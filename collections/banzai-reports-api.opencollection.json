@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Demio Reports API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Event Date participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.demio.com/api/v1/report/:date_id/participants",
+            "params": [
+              {
+                "name": "date_id",
+                "value": "",
+                "type": "path",
+                "description": "Event Date ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by participation status"
+              }
+            ]
+          },
+          "docs": "Returns the participant list for an Event Session (Date). Use the `status` query parameter to filter results by participation status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

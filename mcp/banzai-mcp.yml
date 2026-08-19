@@ -7,54 +7,54 @@ providerId: banzai
 api: Public Demio API
 official_server: none-found
 searched:
-  - Demio Help Center and Apiary documentation
-  - Banzai and Demio marketing sites
-  - npm (@modelcontextprotocol scope, "demio", "banzai")
-  - public MCP registry / directory search
-note: >-
-  No official hosted or remote MCP server is published by Banzai or Demio. The tools
-  below are a CANDIDATE mapping derived one-to-one from the operations in the
-  provider-published contract; they are not published by Banzai. Each tool's real
-  input schema is the referenced operation's parameters and requestBody in
+- Demio Help Center and Apiary documentation
+- Banzai and Demio marketing sites
+- npm (@modelcontextprotocol scope, "demio", "banzai")
+- public MCP registry / directory search
+note: No official hosted or remote MCP server is published by Banzai or Demio. The tools below are a CANDIDATE
+  mapping derived one-to-one from the operations in the provider-published contract; they are not published
+  by Banzai. Each tool's real input schema is the referenced operation's parameters and requestBody in
   openapi/banzai-demio-openapi.yml.
 transport: candidate
 auth:
   model: api-key-pair
-  note: >-
-    A server would carry the account Api-Key/Api-Secret pair. There is no OAuth flow
-    and no scope model, so a hosted multi-tenant server would need per-user credential
-    storage rather than delegated authorization.
+  note: A server would carry the account Api-Key/Api-Secret pair. There is no OAuth flow and no scope
+    model, so a hosted multi-tenant server would need per-user credential storage rather than delegated
+    authorization.
 tools:
-  - name: ping_demio
-    description: Verify Demio API credentials and report whether they are sandbox credentials.
-    source_operation: openapi/banzai-demio-openapi.yml#pingViaHeaders
-    read_only: true
-  - name: list_events
-    description: List active Demio Events, optionally filtered to upcoming, past or automated.
-    source_operation: openapi/banzai-demio-openapi.yml#listEvents
-    read_only: true
-  - name: get_event
-    description: Read one Event with its full list of Sessions.
-    source_operation: openapi/banzai-demio-openapi.yml#getEvent
-    read_only: true
-  - name: get_event_session
-    description: Read one Event Session (Date) by Event ID and Session ID.
-    source_operation: openapi/banzai-demio-openapi.yml#getEventSession
-    read_only: true
-  - name: register_for_event
-    description: >-
-      Register a person for an Event and return their unique join link. WRITE — creates
-      a registrant record and may trigger Demio confirmation email to that person.
-    source_operation: openapi/banzai-demio-openapi.yml#registerForEvent
-    read_only: false
-    consequence: contacts-a-third-party
-    note: >-
-      No idempotency key exists on this operation; a retrying agent can create
-      duplicate registrations. Gate it behind confirmation.
-  - name: list_session_participants
-    description: >-
-      List participants for a Session with attendance status and custom field values.
-    source_operation: openapi/banzai-demio-openapi.yml#listSessionParticipants
-    read_only: true
-    consequence: returns-personal-data
-    note: Returns registrant names, emails and form-field values — PII.
+- name: ping_demio
+  description: Verify Demio API credentials and report whether they are sandbox credentials.
+  source_operation: openapi/banzai-demio-openapi.yml#pingViaHeaders
+  read_only: true
+- name: list_events
+  description: List active Demio Events, optionally filtered to upcoming, past or automated.
+  source_operation: openapi/banzai-demio-openapi.yml#listEvents
+  read_only: true
+- name: get_event
+  description: Read one Event with its full list of Sessions.
+  source_operation: openapi/banzai-demio-openapi.yml#getEvent
+  read_only: true
+- name: get_event_session
+  description: Read one Event Session (Date) by Event ID and Session ID.
+  source_operation: openapi/banzai-demio-openapi.yml#getEventSession
+  read_only: true
+- name: register_for_event
+  description: Register a person for an Event and return their unique join link. WRITE — creates a registrant
+    record and may trigger Demio confirmation email to that person.
+  source_operation: openapi/banzai-demio-openapi.yml#registerForEvent
+  read_only: false
+  consequence: contacts-a-third-party
+  note: No idempotency key exists on this operation; a retrying agent can create duplicate registrations.
+    Gate it behind confirmation.
+- name: list_session_participants
+  description: List participants for a Session with attendance status and custom field values.
+  source_operation: openapi/banzai-demio-openapi.yml#listSessionParticipants
+  read_only: true
+  consequence: returns-personal-data
+  note: Returns registrant names, emails and form-field values — PII.
+deployment:
+  mode: none
+  verified: derived
+  tools: 6
+  checked: '2026-08-12'
+  source: catalog MCP census

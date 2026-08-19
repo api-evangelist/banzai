@@ -1,0 +1,159 @@
+{
+  "item": [
+    {
+      "id": "f0da0725-f28c-41ac-a68d-a4c63acf1d4c",
+      "name": "Reports",
+      "description": {
+        "content": "Participation and attendance reporting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d24a460-5476-4d7c-8e3f-9e3526633cdf",
+          "name": "Event Date participants",
+          "request": {
+            "name": "Event Date participants",
+            "description": {
+              "content": "Returns the participant list for an Event Session (Date). Use the `status` query parameter to filter results by participation status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report",
+                ":date_id",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter results by participation status"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "date_id",
+                  "description": "(Required) Event Date ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa93b6a1-0c6c-4dcd-99ce-92bfbec893ed",
+              "name": "Participants for the Session",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":date_id",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "date_id",
+                      "description": "(Required) Event Date ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"participants\": [\n    {\n      \"email\": \"john.doe@gmail.com\",\n      \"name\": \"John\",\n      \"custom_fields\": [\n        {\n          \"id\": \"last_name\",\n          \"name\": \"Last Name\",\n          \"value\": \"Doe\"\n        },\n        {\n          \"id\": \"website\",\n          \"name\": \"Website\",\n          \"value\": \"https://demio.com\"\n        }\n      ],\n      \"attended\": true,\n      \"status\": \"completed\"\n    },\n    {\n      \"email\": \"jane.doe@gmail.com\",\n      \"name\": \"Jane Doe\",\n      \"custom_fields\": [],\n      \"attended\": false,\n      \"status\": \"did not attend\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.demio.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec115a94-94e3-4837-998b-326c9244b72a",
+    "name": "Public Demio Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Demio, the webinar and virtual-event platform operated by Banzai International. The API exposes the Event, Event Session (Date), registration and participant-reporting surface: list and read Events, read a specific Event Session, register a person for an Event and receive their unique join link, and pull the participant/attendance report for a Session. Every request is authorized with an account API Key and API Secret, supplied either as `Api-Key` / `Api-Secret` request headers or as `api_key` / `api_secret` query string parameters. Keys are managed in the Demio Settings > API area.\n\nProvenance: this document is a faithful format conversion of the API Blueprint that Demio publishes at https://publicdemioapi.docs.apiary.io (blueprint source https://jsapi.apiary.io/apis/publicdemioapi.apib, Apiary owner \"Demio\"). No operation, parameter, response or field has been added that is not documented in that blueprint. Descriptions, rate limits and error semantics are drawn from the Demio Help Center. Live behaviour of `GET /ping` was verified on 2026-08-06 (HTTP 401 `{\"pong\":false,\"messages\":[\"Authorization failed\"]}` without credentials).\n\nContact Support:\n Name: Demio Support\n Email: support@demio.com",
+      "type": "text/plain"
+    }
+  }
+}

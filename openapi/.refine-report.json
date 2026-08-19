@@ -1,0 +1,23 @@
+{
+  "provider": "banzai",
+  "sources": [
+    "banzai-events-api-openapi.yml",
+    "banzai-intro-api-openapi.yml",
+    "banzai-reports-api-openapi.yml"
+  ],
+  "outputs": [
+    "banzai-events-api-openapi.yml",
+    "banzai-intro-api-openapi.yml",
+    "banzai-reports-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "banzai-events-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "banzai-intro-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "banzai-reports-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

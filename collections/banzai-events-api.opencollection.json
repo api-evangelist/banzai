@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Demio Events API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Events list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.demio.com/api/v1/events",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by type"
+              }
+            ]
+          },
+          "docs": "Returns active (not canceled) Events grouped by Event ID and ordered by scheduled date/time (next upcoming session). Use the `type` query parameter to filter to upcoming, past or automated Events."
+        },
+        {
+          "info": {
+            "name": "Event info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.demio.com/api/v1/event/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event ID"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Return only active dates in series"
+              }
+            ]
+          },
+          "docs": "Returns information about a specific Event with the full list of Event Sessions (Dates), ordered by scheduled date/time."
+        },
+        {
+          "info": {
+            "name": "Event Session info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.demio.com/api/v1/event/:id/date/:date_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event ID"
+              },
+              {
+                "name": "date_id",
+                "value": "",
+                "type": "path",
+                "description": "Event Date ID"
+              }
+            ]
+          },
+          "docs": "Returns information about a specific Event Session (Date)."
+        },
+        {
+          "info": {
+            "name": "Register",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.demio.com/api/v1/event/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers someone for an Event and returns the unique join link for that person. Request attributes are automatically filtered; registration form field data may be passed in the request body. Custom fields are keyed by the field's Unique Identifier as configured in the Event's Registration block."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

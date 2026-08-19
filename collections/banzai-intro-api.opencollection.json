@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Demio Intro API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Intro",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ping via headers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.demio.com/api/v1/ping",
+            "auth": {
+              "type": "apikey",
+              "key": "Api-Key",
+              "value": "{{Api-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Verifies authorization using the `Api-Key` and `Api-Secret` request headers. Returns whether the credentials resolve and whether they are sandbox credentials."
+        },
+        {
+          "info": {
+            "name": "Ping via query string",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.demio.com/api/v1/ping/query",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Api Key"
+              },
+              {
+                "name": "api_secret",
+                "value": "",
+                "type": "query",
+                "description": "Api Secret"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Verifies authorization using the `api_key` and `api_secret` query string parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

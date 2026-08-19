@@ -1,0 +1,632 @@
+{
+  "item": [
+    {
+      "id": "cbefb5e5-e032-492b-9421-8bd8c9637f84",
+      "name": "Events",
+      "description": {
+        "content": "Events, Event Sessions (Dates) and registration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d57803b0-ad8d-43a3-aac9-15d597b5ed5a",
+          "name": "Events list",
+          "request": {
+            "name": "Events list",
+            "description": {
+              "content": "Returns active (not canceled) Events grouped by Event ID and ordered by scheduled date/time (next upcoming session). Use the `type` query parameter to filter to upcoming, past or automated Events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter events by type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8d1d84b-5cbe-429d-b45a-5630c7a14062",
+              "name": "A list of Events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 62,\n    \"name\": \"First Webinar\",\n    \"description\": \"First Webinar description\",\n    \"date_id\": 1218,\n    \"status\": \"running\",\n    \"timestamp\": 1456723800,\n    \"zone\": \"Europe/Kiev\",\n    \"registration_url\": \"https://my.demio.com/ref/FKXeiDqyQsRYbfiv\",\n    \"automated\": {\n      \"ready\": true,\n      \"duration\": 3620\n    }\n  },\n  {\n    \"id\": 45,\n    \"name\": \"Second Webinar\",\n    \"description\": \"Second Webinar description\",\n    \"date_id\": 1196,\n    \"status\": \"scheduled\",\n    \"timestamp\": 1456765200,\n    \"zone\": \"America/New_York\",\n    \"registration_url\": \"https://my.demio.com/ref/pgRzWQhYLPmuboOA\",\n    \"automated\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7487016b-5fb4-412d-8a22-aa6e51b95249",
+          "name": "Event info",
+          "request": {
+            "name": "Event info",
+            "description": {
+              "content": "Returns information about a specific Event with the full list of Event Sessions (Dates), ordered by scheduled date/time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "false",
+                  "description": "Return only active dates in series"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8cacc622-4d06-429b-b24c-b0ea0f2d6b31",
+              "name": "The Event",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "active",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4741.420171275244,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"registrants_stay_registered\": false,\n  \"registration_url\": \"string\",\n  \"next_date_id\": 6608.235884641367,\n  \"automated\": {\n    \"duration\": 7186.742014006734,\n    \"ready\": false\n  },\n  \"dates\": [\n    {\n      \"date_id\": 9847.363721517202,\n      \"status\": \"string\",\n      \"timestamp\": 18.011422278197962,\n      \"datetime\": \"string\",\n      \"zone\": \"string\"\n    },\n    {\n      \"date_id\": 7864.240129851601,\n      \"status\": \"string\",\n      \"timestamp\": 1140.1973787406482,\n      \"datetime\": \"string\",\n      \"zone\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23002623-dcaa-4c06-9050-a509f444b669",
+              "name": "Event not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "active",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    \"Event not found\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f395ed72-7c2a-4d79-8c5e-ab5f3de14edc",
+          "name": "Event Session info",
+          "request": {
+            "name": "Event Session info",
+            "description": {
+              "content": "Returns information about a specific Event Session (Date).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                ":id",
+                "date",
+                ":date_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Event ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "date_id",
+                  "description": "(Required) Event Date ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a580f752-bb34-4f65-b542-fdb0e600d682",
+              "name": "The Event Session",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":id",
+                    "date",
+                    ":date_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "date_id",
+                      "description": "(Required) Event Date ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date_id\": 1218,\n  \"status\": \"scheduled\",\n  \"timestamp\": 1456723800,\n  \"datetime\": \"March 26th, 2016 at 8:00PM EET\",\n  \"zone\": \"Europe/Kiev\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "922194cf-c81a-466b-b239-8104322e5909",
+              "name": "Event Date not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":id",
+                    "date",
+                    ":date_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "date_id",
+                      "description": "(Required) Event Date ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    \"Event Date not found\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f169cca2-aa8e-4283-9823-401340abc380",
+          "name": "Register",
+          "request": {
+            "name": "Register",
+            "description": {
+              "content": "Registers someone for an Event and returns the unique join link for that person. Request attributes are automatically filtered; registration form field data may be passed in the request body. Custom fields are keyed by the field's Unique Identifier as configured in the Event's Registration block.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"id\": \"<number,null>\",\n  \"ref_url\": \"<string,null>\",\n  \"date_id\": \"<number,null>\",\n  \"last_name\": \"<string>\",\n  \"company\": \"<string>\",\n  \"website\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"gdpr\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7daabd0e-ddd5-4032-a198-18c34a7cc9b8",
+              "name": "Registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 1,\n  \"ref_url\": null,\n  \"date_id\": 35,\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@gmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hash\": \"fPaSYijVHXI6ZJgE\",\n  \"join_link\": \"https://event.demio.com/join/fPaSYijVHXI6ZJgE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84a7687b-ba22-4145-98f0-6c3166dbb630",
+              "name": "Validation failed or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 1,\n  \"ref_url\": null,\n  \"date_id\": 35,\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@gmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    \"Name must be more than 2 symbols\",\n    \"Wrong Email format\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.demio.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ba476acd-67c8-4480-ab5a-f90b233b5a37",
+    "name": "Public Demio Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Demio, the webinar and virtual-event platform operated by Banzai International. The API exposes the Event, Event Session (Date), registration and participant-reporting surface: list and read Events, read a specific Event Session, register a person for an Event and receive their unique join link, and pull the participant/attendance report for a Session. Every request is authorized with an account API Key and API Secret, supplied either as `Api-Key` / `Api-Secret` request headers or as `api_key` / `api_secret` query string parameters. Keys are managed in the Demio Settings > API area.\n\nProvenance: this document is a faithful format conversion of the API Blueprint that Demio publishes at https://publicdemioapi.docs.apiary.io (blueprint source https://jsapi.apiary.io/apis/publicdemioapi.apib, Apiary owner \"Demio\"). No operation, parameter, response or field has been added that is not documented in that blueprint. Descriptions, rate limits and error semantics are drawn from the Demio Help Center. Live behaviour of `GET /ping` was verified on 2026-08-06 (HTTP 401 `{\"pong\":false,\"messages\":[\"Authorization failed\"]}` without credentials).\n\nContact Support:\n Name: Demio Support\n Email: support@demio.com",
+      "type": "text/plain"
+    }
+  }
+}
