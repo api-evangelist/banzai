@@ -14,6 +14,18 @@ description: >-
   attendance and no-show triggers for teams that do not want to call the API
   directly. Banzai went public via SPAC in December 2023 and was surfaced to the API
   Evangelist network through the secondary-market harvest backlog.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://cdn.prod.website-files.com/61967dbb50eec57a4e7fde97/61f1c591c10f6d34d7f8347c_favicon-large.png
 url: https://raw.githubusercontent.com/api-evangelist/banzai/refs/heads/main/apis.yml
 x-type: company
