@@ -26,6 +26,21 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  - rate-limits
+  - security
+  - sandbox
+  generated: '2026-09-03'
+  method: derived
 image: https://cdn.prod.website-files.com/61967dbb50eec57a4e7fde97/61f1c591c10f6d34d7f8347c_favicon-large.png
 url: https://raw.githubusercontent.com/api-evangelist/banzai/refs/heads/main/apis.yml
 x-type: company
@@ -209,8 +224,9 @@ common:
   url: packages/banzai-packages.yml
 - type: WellKnown
   url: well-known/banzai-well-known.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/banzai-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: ToolCrosswalk
   url: mcp/banzai-tool-crosswalk.yml
 - type: AgentSkill
