@@ -1,9 +1,7 @@
 {
   "provider": "banzai",
   "sources": [
-    "banzai-events-api-openapi.yml",
-    "banzai-intro-api-openapi.yml",
-    "banzai-reports-api-openapi.yml"
+    "_original/banzai-demio-openapi.yml"
   ],
   "outputs": [
     "banzai-events-api-openapi.yml",
@@ -14,10 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "banzai-events-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "banzai-intro-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "banzai-reports-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "banzai-demio-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "banzai-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "banzai-intro-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "banzai-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
