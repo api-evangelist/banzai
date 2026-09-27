@@ -75,13 +75,6 @@ paths:
                   status: did not attend
 components:
   schemas:
-    ParticipantList:
-      type: object
-      properties:
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
     Participant:
       type: object
       properties:
@@ -106,6 +99,13 @@ components:
           - did not attend
           - left early
           - banned
+    ParticipantList:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
     ParticipantCustomField:
       type: object
       properties:
