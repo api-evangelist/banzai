@@ -75,6 +75,25 @@ paths:
                   status: did not attend
 components:
   schemas:
+    ParticipantCustomField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Field identifier
+        name:
+          type: string
+          description: Field name
+        value:
+          type: string
+          description: Field value
+    ParticipantList:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
     Participant:
       type: object
       properties:
@@ -99,25 +118,6 @@ components:
           - did not attend
           - left early
           - banned
-    ParticipantList:
-      type: object
-      properties:
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-    ParticipantCustomField:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Field identifier
-        name:
-          type: string
-          description: Field name
-        value:
-          type: string
-          description: Field value
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
