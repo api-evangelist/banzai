@@ -210,16 +210,20 @@ paths:
                     - Bad Request syntax. Try to check request Body data JSON format.
 components:
   schemas:
-    EventSummary:
+    Automated:
+      type:
+      - object
+      - 'null'
+      description: Present when the Event is automated
+      properties:
+        duration:
+          type: number
+          description: Video duration in seconds
+        ready:
+          type: boolean
+          description: Video is ready to be played
+    Event:
       type: object
-      required:
-      - id
-      - name
-      - date_id
-      - status
-      - timestamp
-      - zone
-      - registration_url
       properties:
         id:
           type: number
@@ -230,41 +234,22 @@ components:
         description:
           type: string
           description: Event description
-        date_id:
-          type: number
-          description: Event Date ID
-        status:
-          type: string
-          description: Event Date status
-        timestamp:
-          type: number
-          description: Scheduled date/time of the Event Date, Unix timestamp
-        zone:
-          type: string
-          description: Scheduled timezone of the Event Date
+        registrants_stay_registered:
+          type: boolean
+          description: Keep Registrants registered through the series
         registration_url:
           type: string
           description: Humanized Event registration page URL
+        next_date_id:
+          type: number
+          description: Next available (running or scheduled) Event Date ID
         automated:
           $ref: '#/components/schemas/Automated'
-    EventDate:
-      type: object
-      properties:
-        date_id:
-          type: number
-          description: Event Date identifier
-        status:
-          type: string
-          description: Status
-        timestamp:
-          type: number
-          description: Unix timestamp
-        datetime:
-          type: string
-          description: Human friendly date/time string
-        zone:
-          type: string
-          description: Timezone
+        dates:
+          type: array
+          description: All (scheduled, running, finished) Event Dates
+          items:
+            $ref: '#/components/schemas/EventDate'
     RegistrationRequest:
       type: object
       required:
@@ -310,28 +295,34 @@ components:
         gdpr:
           type: string
           description: Value for the predefined GDPR field
-    Automated:
-      type:
-      - object
-      - 'null'
-      description: Present when the Event is automated
+    EventDate:
+      type: object
       properties:
-        duration:
+        date_id:
           type: number
-          description: Video duration in seconds
-        ready:
-          type: boolean
-          description: Video is ready to be played
-    Error:
+          description: Event Date identifier
+        status:
+          type: string
+          description: Status
+        timestamp:
+          type: number
+          description: Unix timestamp
+        datetime:
+          type: string
+          description: Human friendly date/time string
+        zone:
+          type: string
+          description: Timezone
+    EventSummary:
       type: object
-      properties:
-        messages:
-          type: array
-          description: Human readable error messages
-          items:
-            type: string
-    Event:
-      type: object
+      required:
+      - id
+      - name
+      - date_id
+      - status
+      - timestamp
+      - zone
+      - registration_url
       properties:
         id:
           type: number
@@ -342,22 +333,31 @@ components:
         description:
           type: string
           description: Event description
-        registrants_stay_registered:
-          type: boolean
-          description: Keep Registrants registered through the series
+        date_id:
+          type: number
+          description: Event Date ID
+        status:
+          type: string
+          description: Event Date status
+        timestamp:
+          type: number
+          description: Scheduled date/time of the Event Date, Unix timestamp
+        zone:
+          type: string
+          description: Scheduled timezone of the Event Date
         registration_url:
           type: string
           description: Humanized Event registration page URL
-        next_date_id:
-          type: number
-          description: Next available (running or scheduled) Event Date ID
         automated:
           $ref: '#/components/schemas/Automated'
-        dates:
+    Error:
+      type: object
+      properties:
+        messages:
           type: array
-          description: All (scheduled, running, finished) Event Dates
+          description: Human readable error messages
           items:
-            $ref: '#/components/schemas/EventDate'
+            type: string
     Registration:
       type: object
       properties:
