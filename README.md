@@ -64,19 +64,132 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Banzai International, Inc. (NASDAQ: BNZI) is a marketing technology company building AI-enabled
-engagement, video and event marketing software — Demio, Boost, Curate, Vidello, OpenReel,
-CreateStudio, PhotoVibrance, Twinkle and Act-On.
+Banzai International, Inc. (NASDAQ: BNZI) is a Seattle-area marketing technology company that builds AI-enabled engagement, video and event marketing software for B2B marketing and sales teams. Its portfolio includes Demio (webinar and virtual event platform), Boost, Curate, Vidello, OpenReel, CreateStudio, PhotoVibrance and Twinkle, alongside Act-On Software. The public developer surface Banzai publishes is the Public Demio API — a key/secret authorized REST API at https://my.demio.com/api/v1 covering Events, Event Sessions (Dates), attendee registration with unique join links, and session participation reporting. Demio documents the API as an Apiary API Blueprint, publishes rate limits and daily call quotas, runs a public Statuspage, and offers a Zapier app with registration, attendance and no-show triggers for teams that do not want to call the API directly. Banzai went public via SPAC in December 2023 and was surfaced to the API Evangelist network through the secondary-market harvest backlog.
 
-Its one public developer surface is the **Public Demio API** — a REST API at
-`https://my.demio.com/api/v1` covering webinar Events, Event Sessions, attendee registration
-(returning a unique join link) and session attendance reporting, authorized with an account
-API Key and API Secret. Demio documents it as an API Blueprint on Apiary, publishes rate
-limits and daily call quotas, and runs a public status page.
+**Areas:** Company · Marketing · Marketing Technology · Event Management · Webinars · Video · Engagement Marketing · Demand Generation · Software-as-a-Service
 
-- Company: https://www.banzai.io
-- Demio: https://www.demio.com
-- API documentation: https://publicdemioapi.docs.apiary.io
-- Help center: https://help.demio.com/en/
-- Status: https://status.demio.com
-- Investor relations: https://ir.banzai.io/
+## Banzai on APIs.io
+
+Everything profiled for Banzai is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/banzai/](https://apis.io/providers/banzai/)** — or go straight to one of the APIs or properties below.
+
+### APIs (3)
+
+- [Banzai Events API](https://apis.io/apis/banzai/banzai-events-api/) — Events, Event Sessions (Dates) and registration.
+- [Banzai Intro API](https://apis.io/apis/banzai/banzai-intro-api/) — Authorization checks.
+- [Banzai Reports API](https://apis.io/apis/banzai/banzai-reports-api/) — Participation and attendance reporting.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Banzai Demio Events](https://apis.io/asyncapis/banzai/banzai-demio-events/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [banzai-mcp.yml](https://apis.io/servers/banzai/banzai-mcp-yml/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Public Demio Events API](https://apis.io/collections/banzai/open-banzai-events-api/)
+- [Public Demio Intro API](https://apis.io/collections/banzai/open-banzai-intro-api/)
+- [Public Demio Reports API](https://apis.io/collections/banzai/open-banzai-reports-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Banzai Demio Overlay](https://apis.io/overlays/banzai/banzai-demio-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Banzai Authentication](https://apis.io/security/banzai/banzai-authentication/)
+- [Banzai Domain Security](https://apis.io/security/banzai/banzai-domain-security/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Banzai Rate Limits](https://apis.io/rate-limits/banzai/banzai-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.banzai.io)
+- [Documentation](https://publicdemioapi.docs.apiary.io)
+- [Getting started](https://help.demio.com/en/articles/4544025-api-limitations)
+- [API reference](https://publicdemioapi.docs.apiary.io)
+- [Pricing](https://www.demio.com/pricing)
+- [Sign up](https://www.demio.com/free-trial)
+- [Support](https://help.demio.com/en/)
+- [Blog](https://www.banzai.io/blog)
+- [Compliance](https://help.demio.com/en/articles/5151423-demio-security-privacy)
+- [Terms of service](https://www.banzai.io/legal/terms-and-conditions)
+- [Privacy policy](https://www.banzai.io/legal/privacy-policy)
+- [GitHub](https://github.com/banzai-io)
+- [Status](https://status.demio.com)
+
+## API Evangelist rating
+
+**Kin Score 45.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 21.9 |
+| Contract governance | 4.5 |
+| Operational transparency | 60.5 |
+| Developer ergonomics | 57.7 |
+| Access clarity | 52.6 |
+
+**Agent readiness 34.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 33.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/banzai/](https://apis.io/providers/banzai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Banzai: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/banzai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
